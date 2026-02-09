@@ -53,3 +53,42 @@ CREATE TABLE IF NOT EXISTS visits (
   description VARCHAR(255),
   FOREIGN KEY (pet_id) REFERENCES pets(id)
 ) engine=InnoDB;
+
+
+
+DROP TABLE IF EXISTS petclinic.feature_flag;
+
+CREATE TABLE petclinic.feature_flag (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    feature_key VARCHAR(100) NOT NULL UNIQUE,
+    enabled BOOLEAN NOT NULL,
+    rollout_percentage INT NOT NULL,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS petclinic.feature_whitelist;
+
+CREATE TABLE petclinic.feature_whitelist (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    feature_key VARCHAR(100) NOT NULL,
+    user_id BIGINT NOT NULL,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT uq_feature_whitelist UNIQUE (feature_key, user_id)
+);
+
+DROP TABLE IF EXISTS petclinic.feature_blacklist;
+
+CREATE TABLE petclinic.feature_blacklist (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    feature_key VARCHAR(100) NOT NULL,
+    user_id BIGINT NOT NULL,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT uq_feature_blacklist UNIQUE (feature_key, user_id)
+);

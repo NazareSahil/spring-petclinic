@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Feature Disabled</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 80px auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #dc3545;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+        }
+        .feature-name {
+            font-weight: bold;
+            color: #000;
+        }
+        .reason {
+            margin-top: 20px;
+            font-style: italic;
+            color: #6c757d;
+        }
+        .actions {
+            margin-top: 30px;
+        }
+        a.button {
+            display: inline-block;
+            padding: 10px 18px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        a.button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1>🚫 Feature Unavailable</h1>
+
+    <p>
+        The feature
+        <span class="feature-name" th:text="${featureName}">Unknown Feature</span>
+        is currently disabled.
+    </p>
+
+    <p class="reason" th:if="${reason != null}">
+        Reason: <span th:text="${reason}">Disabled by administrator</span>
+    </p>
+
+    <p th:if="${reason == null}">
+        This feature is not available at the moment.
+    </p>
+
+    <div class="actions">
+        <a href="/" class="button">Go to Home</a>
+    </div>
+</div>
+</body>
+</html>

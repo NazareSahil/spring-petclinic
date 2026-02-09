@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.springframework.samples.petclinic.feature.annotation.FeatureRequired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
@@ -96,6 +97,7 @@ class PetController {
 	}
 
 	@GetMapping("/pets/new")
+	@FeatureRequired("ADD_NEW_PET")
 	public String initCreationForm(Owner owner, ModelMap model) {
 		Pet pet = new Pet();
 		owner.addPet(pet);
@@ -103,6 +105,7 @@ class PetController {
 	}
 
 	@PostMapping("/pets/new")
+	@FeatureRequired("ADD_NEW_PET")
 	public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result,
 			RedirectAttributes redirectAttributes) {
 

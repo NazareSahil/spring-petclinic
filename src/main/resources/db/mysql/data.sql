@@ -51,3 +51,7 @@ INSERT IGNORE INTO visits VALUES (1, 7, '2010-03-04', 'rabies shot');
 INSERT IGNORE INTO visits VALUES (2, 8, '2011-03-04', 'rabies shot');
 INSERT IGNORE INTO visits VALUES (3, 8, '2009-06-04', 'neutered');
 INSERT IGNORE INTO visits VALUES (4, 7, '2008-09-04', 'spayed');
+
+INSERT INTO petclinic.feature_flag (feature_key, enabled, rollout_percentage) VALUES ('ADD_NEW_PET', false, 0);
+INSERT INTO petclinic.feature_flag (feature_key, enabled, rollout_percentage) VALUES ('ADD_VISIT', false, 0);
+INSERT INTO petclinic.feature_flag (feature_key, enabled, rollout_percentage) VALUES ('OWNER_SEARCH', false, 0);
